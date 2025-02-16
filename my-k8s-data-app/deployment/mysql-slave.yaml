@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-slave
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-slave
+  template:
+    metadata:
+      labels:
+        app: mysql-slave
+    spec:
+      containers:
+      - name: mysql-slave
+        image: mysql:5.7
+        args: ["--innodb_log_file_size=26214400"]
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: root-password
+        - name: MYSQL_REPLICATION_MODE
+          value: slave
+        - name: MYSQL_MASTER_HOST
+          value: mysql-master
+        - name: MYSQL_DATABASE
+          value: testdb
+        ports:
+        - containerPort: 3306
