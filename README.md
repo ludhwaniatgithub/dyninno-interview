@@ -91,14 +91,14 @@ kind delete cluster --name mycluster
 ```
 
 
-##Notes
+## Notes
 Ensure Docker is running before executing the script.
 
 The script assumes Helm is installed and configured to deploy Prometheus and Grafana.
 
 The Writer and Reader images are built locally and loaded into the Kind cluster. If you want to push them to a remote registry, modify the Dockerfile and deployment manifests accordingly.
 
-##Troubleshooting
+## Troubleshooting
 If the Writer or Reader applications fail to start, check the logs using kubectl logs <pod-name>.
 
 Ensure the MySQL master and slave pods are running before the Writer and Reader applications start.
