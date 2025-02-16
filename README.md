@@ -10,7 +10,8 @@ This project sets up a Kubernetes cluster using Kind (Kubernetes IN Docker) and 
 - kubectl installed
 
 ## Project Structure
-
+```
+Project Structure
 my-k8s-data-app/
 ├── deployment/                  # Kubernetes manifests
 │   ├── mysql-secret.yaml        # MySQL credentials secret
@@ -30,28 +31,7 @@ my-k8s-data-app/
     ├── requirements.txt         # Python dependencies
     ├── Dockerfile               # Dockerfile for Reader
     └── reader.py                # Reader application code
-    
-
-
-my-k8s-data-app/
-├── deployment/ # Kubernetes manifests
-│ ├── mysql-secret.yaml # MySQL credentials secret
-│ ├── mysql-master.yaml # MySQL master deployment
-│ ├── mysql-master-service.yaml # MySQL master service
-│ ├── mysql-slave.yaml # MySQL slave deployment
-│ ├── mysql-slave-service.yaml # MySQL slave service
-│ ├── writer-deployment.yaml # Writer deployment
-│ ├── writer-service.yaml # Writer service (NodePort)
-│ ├── reader-deployment.yaml # Reader deployment
-│ └── reader-service.yaml # Reader service (ClusterIP)
-├── writer/ # Writer application files
-│ ├── requirements.txt # Python dependencies
-│ ├── Dockerfile # Dockerfile for Writer
-│ └── writer.py # Writer application code
-└── reader/ # Reader application files
-├── requirements.txt # Python dependencies
-├── Dockerfile # Dockerfile for Reader
-└── reader.py # Reader application code
+```
 
 
 ## Deployment Steps
@@ -74,10 +54,10 @@ my-k8s-data-app/
 
 ## Accessing Services
 
-- **Grafana**: Accessible at `http://<host-ip>:3000` (default credentials: `admin/admin`).
+- **Grafana**: Accessible at `http://<host-ip>:3000` (default credentials: `admin/prom-operator`).
 - **Prometheus**: Accessible at `http://<host-ip>:9090`.
 - **Writer API**: Accessible at `http://<host-ip>:8080`.
-- **Reader API**: Accessible internally via the `reader-service` ClusterIP service on port `5000`.
+- **Reader API**: Accessible at `(http://<host-ip>:8080)`.
 
 ## Monitoring
 
@@ -102,6 +82,15 @@ my-k8s-data-app/
 
 - **Master**: Handles write operations.
 - **Slave**: Handles read operations for the Reader application.
+
+## Creation Step 
+To Create all the above Arch we can just run 
+
+```bash
+bash setup.sh
+```
+
+This will create all the Arch and make every thing Live 
 
 ## Cleanup
 
