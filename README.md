@@ -113,7 +113,7 @@ bash setup.sh
 ```
 
 This will create all the Arch and make every thing Live 
-
+### Make Sure Directory is not present so it will create whole Arch
 ---
 
 ## Cleanup
